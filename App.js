@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
+import { useFonts } from "expo-font";
 
 // Screens
 import Home from "./screens/Home";
@@ -14,6 +15,20 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    interExtraLight: require("./assets/fonts/Inter-ExtraLight.ttf"),
+    interLight: require("./assets/fonts/Inter-Light.ttf"),
+    interBlack: require("./assets/fonts/Inter-Regular.ttf"),
+    interMedium: require("./assets/fonts/Inter-Medium.ttf"),
+    interSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
+    interBold: require("./assets/fonts/Inter-Bold.ttf"),
+    interExtraBold: require("./assets/fonts/Inter-ExtraBold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator

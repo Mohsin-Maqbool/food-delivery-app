@@ -9,7 +9,9 @@ function Home() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontSize: 18, color: "#000", fontWeight: 500 }}>
+      <Text
+        style={{ fontSize: 30, color: "#000", fontFamily: "interExtraBold" }}
+      >
         Home Screen
       </Text>
     </View>

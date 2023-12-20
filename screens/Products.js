@@ -7,7 +7,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import React from "react";
+import ProductCard from "../components/ProductCard";
 
 export default function Products() {
   const products = [
@@ -82,16 +82,7 @@ export default function Products() {
     >
       <StatusBar />
       {products.map((item, index) => (
-        <View key={index} style={styles.productCard}>
-          <Image style={styles.image} source={item.image} />
-          <View>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.price}>{`PKR ${item.price}`}</Text>
-            <Text style={styles.desc} numberOfLines={1}>
-              {item.desc}
-            </Text>
-          </View>
-        </View>
+        <ProductCard data={item} key={index} />
       ))}
     </ScrollView>
   );
@@ -102,32 +93,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 40 : StatusBar.height,
     padding: 20,
-  },
-  productCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 14,
-  },
-
-  image: {
-    height: 120,
-    width: 120,
-    borderRadius: 20,
-    marginRight: 16,
-  },
-  name: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#000",
-    marginBottom: 12,
-  },
-  price: {
-    fontSize: 16,
-    color: "#000",
-    marginBottom: 12,
-  },
-  desc: {
-    fontSize: 16,
-    color: "#000",
   },
 });

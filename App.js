@@ -16,13 +16,13 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    interExtraLight: require("./assets/fonts/Inter-ExtraLight.ttf"),
-    interLight: require("./assets/fonts/Inter-Light.ttf"),
-    interRegular: require("./assets/fonts/Inter-Regular.ttf"),
-    interMedium: require("./assets/fonts/Inter-Medium.ttf"),
-    interSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
-    interBold: require("./assets/fonts/Inter-Bold.ttf"),
-    interExtraBold: require("./assets/fonts/Inter-ExtraBold.ttf"),
+    ExtraLight: require("./assets/fonts/Inter-ExtraLight.ttf"),
+    Light: require("./assets/fonts/Inter-Light.ttf"),
+    Regular: require("./assets/fonts/Inter-Regular.ttf"),
+    Medium: require("./assets/fonts/Inter-Medium.ttf"),
+    SemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
+    Bold: require("./assets/fonts/Inter-Bold.ttf"),
+    ExtraBold: require("./assets/fonts/Inter-ExtraBold.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -50,7 +50,7 @@ export default function App() {
           name="products"
           component={Products}
           options={{
-            tabBarLabel: "Products",
+            tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => (
               <Icon name="clipboard" color={color} size={size} />
             ),

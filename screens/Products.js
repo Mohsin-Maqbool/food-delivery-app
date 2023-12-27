@@ -82,7 +82,7 @@ export default function Products() {
     >
       <StatusBar />
       {products.map((item, index) => (
-        <ProductCard data={item} key={index} />
+        <ProductCard key={index} data={item} />
       ))}
     </ScrollView>
   );

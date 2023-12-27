@@ -1,10 +1,14 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProductCard(props) {
   const { data } = props;
+  const navigation = useNavigation();
   return (
-    <View style={styles.productCard}>
+    <TouchableOpacity
+      style={styles.productCard}
+      onPress={() => navigation.navigate("productDetail")}
+    >
       <Image style={styles.image} source={data.image} />
       <View>
         <Text style={styles.name}>{data.name}</Text>
@@ -13,7 +17,7 @@ export default function ProductCard(props) {
           {data.desc}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

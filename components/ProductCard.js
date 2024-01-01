@@ -7,7 +7,11 @@ export default function ProductCard(props) {
   return (
     <TouchableOpacity
       style={styles.productCard}
-      onPress={() => navigation.navigate("productDetail")}
+      onPress={() =>
+        navigation.navigate("productDetail", {
+          id: data.id,
+        })
+      }
     >
       <Image style={styles.image} source={data.image} />
       <View>
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 16,
     marginRight: 12,
+    resizeMode: "cover",
   },
   name: {
     fontSize: 20,

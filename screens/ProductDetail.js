@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,46 +9,64 @@ import {
   ScrollView,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
+import { products } from "../db/products";
 
-export default function ProductDetail() {
+export default function ProductDetail({ route }) {
+  const [qty, setQty] = useState(1);
+  const [productDetail, setProductDetail] = useState(null);
+
+  const handlePlusButton = () => {
+    setQty(qty + 1);
+  };
+
+  const handleMinusButton = () => {
+    setQty(qty - 1);
+  };
+
+  useEffect(() => {
+    const product = products.find((x) => x.id === route.params.id);
+    setProductDetail(product);
+  }, [route]);
+
   return (
     <View style={styles.container}>
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <View style={styles.head}>
-          <Image
-            source={require("../assets/images/1.jpg")}
-            style={styles.image}
-          />
+          <Image source={productDetail?.image} style={styles.image} />
         </View>
         <View style={styles.content}>
-          <Text style={styles.title}>Product 1</Text>
-          <Text style={styles.price}>PKR 400</Text>
+          <Text style={styles.title}>{productDetail?.name}</Text>
+          <Text style={styles.price}>{`PKR ${productDetail?.price}`}</Text>
           <View style={styles.counterBlock}>
             <View style={styles.counter}>
-              <TouchableOpacity style={styles.counterBtn}>
+              <TouchableOpacity
+                style={styles.counterBtn}
+                disabled={qty === 1}
+                onPress={() => handleMinusButton()}
+              >
                 <Feather name="minus" color="#000" size={24} />
               </TouchableOpacity>
-              <Text style={styles.qty}>1</Text>
-              <TouchableOpacity style={styles.counterBtn}>
+              <Text style={styles.qty}>{qty}</Text>
+              <TouchableOpacity
+                style={styles.counterBtn}
+                onPress={() => handlePlusButton()}
+              >
                 <Feather name="plus" color="#000" size={24} />
               </TouchableOpacity>
             </View>
-            <Text style={styles.estimate}>Est. Total: PKR 400</Text>
+            <Text style={styles.estimate}>{`Est. Total: PKR ${
+              qty * productDetail?.price
+            }`}</Text>
           </View>
           <View style={styles.desBlock}>
             <Text style={styles.desTitle}>Description</Text>
-            <Text style={styles.description}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </Text>
+            <Text style={styles.description}>{productDetail?.desc}</Text>
           </View>
         </View>
       </ScrollView>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.cartBtn}>
-          <Text style={styles.btnLabel}>Add 1 to basket</Text>
+          <Text style={styles.btnLabel}>{`Add ${qty} to basket`}</Text>
         </TouchableOpacity>
       </View>
     </View>

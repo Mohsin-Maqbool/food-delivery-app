@@ -12,7 +12,16 @@ function HomeNavigator() {
       }}
     >
       <Stack.Screen name="home" component={Home} />
-      <Stack.Screen name="productDetail" component={ProductDetail} />
+      <Stack.Screen
+        name="productDetail"
+        component={ProductDetail}
+        options={() => ({
+          tabBarStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        })}
+      />
     </Stack.Navigator>
   );
 }

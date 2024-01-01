@@ -10,6 +10,7 @@ import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import ProductCard from "../components/ProductCard";
+import { products } from "../db/products";
 
 function Home() {
   const categories = [
@@ -36,39 +37,6 @@ function Home() {
     {
       label: "Tea",
       icon: <FontAwesome5 name="mug-hot" size={24} color="#333" />,
-    },
-  ];
-
-  const topProducts = [
-    {
-      name: "Product 1",
-      price: 500,
-      desc: "Determines whether the keyboard gets.",
-      image: require("../assets/images/1.jpg"),
-    },
-    {
-      name: "Product 2",
-      price: 300,
-      desc: "Determines whether the keyboard gets.",
-      image: require("../assets/images/2.jpg"),
-    },
-    {
-      name: "Product 3",
-      price: 700,
-      desc: "Determines whether the keyboard gets.",
-      image: require("../assets/images/3.jpg"),
-    },
-    {
-      name: "Product 4",
-      price: 800,
-      desc: "Determines whether the keyboard gets.",
-      image: require("../assets/images/4.jpg"),
-    },
-    {
-      name: "Product 5",
-      price: 250,
-      desc: "Determines whether the keyboard gets.",
-      image: require("../assets/images/5.jpg"),
     },
   ];
 
@@ -105,7 +73,7 @@ function Home() {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         >
-          {topProducts.map((item, index) => (
+          {products.map((item, index) => (
             <ProductCard key={index} data={item} />
           ))}
         </ScrollView>
